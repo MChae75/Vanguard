@@ -69,7 +69,7 @@ export class PortfolioComponent implements OnInit {
         if (!query || query.length < 2) {
           return of([]);
         }
-        return this.http.get<SearchResult[]>('http://localhost:8081/api/portfolio/search?q=' + query).pipe(
+        return this.http.get<SearchResult[]>('http://34.228.247.3:8081/api/portfolio/search?q=' + query).pipe(
           catchError(() => of([]))
         );
       })
@@ -90,7 +90,7 @@ export class PortfolioComponent implements OnInit {
 
   fetchAssets(): void {
     this.isLoading = true;
-    this.http.get<Asset[]>('http://localhost:8081/api/portfolio/assets').subscribe({
+    this.http.get<Asset[]>('http://34.228.247.3:8081/api/portfolio/assets').subscribe({
       next: (data) => {
         this.assets = data;
         this.totalValue = data.reduce((sum, asset) => sum + asset.value, 0);
@@ -107,7 +107,7 @@ export class PortfolioComponent implements OnInit {
   addAsset(): void {
     if (!this.newSymbol) return;
     this.isAdding = true;
-    this.http.post<Asset>('http://localhost:8081/api/portfolio/add', {
+    this.http.post<Asset>('http://34.228.247.3:8081/api/portfolio/add', {
       symbol: this.newSymbol,
       quantity: this.newQuantity
     }).subscribe({

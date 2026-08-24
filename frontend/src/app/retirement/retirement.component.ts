@@ -72,7 +72,7 @@ export class RetirementComponent implements OnInit {
   }
 
   calculate(): void {
-    this.http.post<RetirementResponse>('http://localhost:8081/api/retirement/calculate', this.request)
+    this.http.post<RetirementResponse>('http://34.228.247.3:8081/api/retirement/calculate', this.request)
       .subscribe(res => {
         this.totalProjected = res.totalProjectedSavings;
         this.lineChartData = {
