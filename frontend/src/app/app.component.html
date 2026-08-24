@@ -1,0 +1,45 @@
+<div class="min-h-screen bg-gray-50 flex flex-col font-sans">
+  <!-- Header -->
+  <header class="bg-red-700 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <!-- Placeholder for Vanguard logo -->
+        <div class="w-8 h-8 bg-white rounded-sm flex items-center justify-center">
+          <span class="text-red-700 font-bold text-xl leading-none" style="font-family: 'Times New Roman', serif;">V</span>
+        </div>
+        <h1 class="text-2xl font-bold tracking-wide">Vanguard Dashboard</h1>
+      </div>
+      <div class="text-sm font-medium opacity-90">Investor Services</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Material Tabs for Navigation -->
+    <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="mb-6 bg-white shadow-sm rounded-t-lg px-2 pt-2">
+      @for (link of links; track link.path) {
+        <a mat-tab-link
+           [routerLink]="link.path"
+           routerLinkActive #rla="routerLinkActive"
+           [active]="rla.isActive">
+          {{link.label}}
+        </a>
+      }
+    </nav>
+    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+
+    <!-- Router Outlet -->
+    <div class="bg-white rounded-b-lg shadow-md p-6 min-h-[600px]">
+      <router-outlet></router-outlet>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm opacity-70">
+      &copy; 2026 The Vanguard Group, Inc. All rights reserved.
+    </div>
+  </footer>
+</div>
