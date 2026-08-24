@@ -110,8 +110,7 @@ export class PortfolioComponent implements OnInit {
     this.isResetting = true;
     this.http.delete('http://34.228.247.3:8081/api/portfolio/reset').subscribe({
       next: () => {
-        this.assets = [];
-        this.updateChart();
+        this.fetchAssets();
         this.isResetting = false;
       },
       error: (err) => {
