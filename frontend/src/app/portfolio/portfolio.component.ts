@@ -36,6 +36,7 @@ export class PortfolioComponent implements OnInit {
   newSymbol: string = '';
   newQuantity: number = 1;
   isAdding: boolean = false;
+  isResetting: boolean = false;
   isLoading: boolean = true;
 
   searchQuery$ = new Subject<string>();
@@ -100,6 +101,22 @@ export class PortfolioComponent implements OnInit {
       error: (err) => {
         console.error('Failed to fetch assets', err);
         this.isLoading = false;
+      }
+    });
+  }
+
+  resetPortfolio(): void {
+    if (!confirm('Are you sure you want to reset your entire portfolio?')) return;
+    this.isResetting = true;
+    this.http.delete('http://34.228.247.3:8081/api/portfolio/reset').subscribe({
+      next: () => {
+        this.assets = [];
+        this.updateChart();
+        this.isResetting = false;
+      },
+      error: (err) => {
+        console.error('Failed to reset portfolio', err);
+        this.isResetting = false;
       }
     });
   }

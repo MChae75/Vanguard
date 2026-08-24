@@ -23,7 +23,13 @@
   <!-- Right Column: Asset List -->
   <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden flex flex-col">
     <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
-      <h3 class="text-md font-semibold text-gray-800">Your Assets</h3>
+      <div class="flex items-center space-x-3">
+        <h3 class="text-md font-semibold text-gray-800">Your Assets</h3>
+        <button type="button" (click)="resetPortfolio()" [disabled]="isResetting"
+                class="rounded-md bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:opacity-50">
+          {{ isResetting ? 'Resetting...' : 'Reset' }}
+        </button>
+      </div>
       
       <!-- Add Asset Form -->
       <form (submit)="addAsset(); $event.preventDefault()" class="flex items-center space-x-2">

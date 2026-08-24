@@ -30,6 +30,10 @@ public class PortfolioService {
         return assets;
     }
 
+    public void resetPortfolio() {
+        portfolioRepository.deleteAll();
+    }
+
     public Asset addAsset(String symbol, double quantity) {
         YahooFinanceService.YahooQuote quote = yahooFinanceService.getQuote(symbol);
         if (quote == null) {

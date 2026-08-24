@@ -24,6 +24,11 @@ public class PortfolioController {
         return portfolioService.addAsset(request.getSymbol(), request.getQuantity());
     }
 
+    @DeleteMapping("/reset")
+    public void resetPortfolio() {
+        portfolioService.resetPortfolio();
+    }
+
     @GetMapping("/search")
     public List<YahooFinanceService.YahooSearchResult> searchAssets(@RequestParam String q) {
         return portfolioService.searchAssets(q);
